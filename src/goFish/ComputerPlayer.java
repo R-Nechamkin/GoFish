@@ -1,6 +1,6 @@
 package goFish;
 
-  public Class ComputerPlayer implements Player {
+  public class ComputerPlayer implements Player {
     public void play(){
     }
   }

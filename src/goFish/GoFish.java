@@ -1,6 +1,8 @@
 package goFish;
 
-  public interface GoFish extends Game{
+import java.util.List;
+
+public interface GoFish extends Game{
     final List<Player> players;
     final Deck deck;
   }
