@@ -2,10 +2,12 @@ package GoFishGameDev;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class HumanPlayer implements Player {
     private String name;
     private List<Card> hand;
+    private Set<String> matches;
 
     public HumanPlayer(String name, List<Card> hand) {
         this.name = name;
@@ -21,17 +23,44 @@ public class HumanPlayer implements Player {
     public List<Card> getHand() {
         return hand;
     }
+	
+    @Override
+	public Set<String> getMatches() {
+		return matches;
+	}
+    
 
     @Override
     public void addToHand(Card card) {
         hand.add(card);
     }
+    
+
+    /*
+     * This method asks a player for a card and adds those cards to the hand
+     */
+	@Override
+	public int askForCard(Player asker, String rank) {
+    	int catches = 0;
+    	System.out.println(asker.getName() + " has asked you for " + rank);
+    	for (int i =0; i < hand.size(); i++) {
+    		if (hand.get(i).getRank() == rank) {
+    			asker.addToHand(hand.get(i));
+    			hand.remove(hand.get(i));
+    			catches++;
+    		}
+    	}
+    	if (catches > 0)
+    		System.out.println("You have given " + asker.getName() + " the " + catches + " " + rank + " which you had");
+    	else
+    		System.out.println("Since you have none of this card, you tell " + asker.getName() + " to go fish!");
+    	return catches;		
+	}
+
 
     @Override
-    public void play() {
+    public void play(Player computer, Deck deck) {
     	Scanner keyboard = new Scanner(System.in);
-    	Player computer = new ComputerPlayer("computer", null);
-    	Deck deck = new Deck();
     	
     	List<String> ranks = new ArrayList<>();
     	ranks.add("2");
@@ -82,7 +111,7 @@ public class HumanPlayer implements Player {
 		System.out.println("Asking the computer for a " + cardVal + "...");
 		System.out.println("Press Enter to continue");
 		keyboard.nextLine();
-		int catches = askForCard(computer, cardVal);	
+		int catches = computer.askForCard(this, cardVal);	
 		
 		if (catches == 0) {
 			System.out.println("The computer does not have any of your cards. Go Fish!");
@@ -94,27 +123,8 @@ public class HumanPlayer implements Player {
 			System.out.println("You got " + catches + " of your card from the computer");
 		}
     }
-    
-    /*
-     * This method asks a player for a card and adds those cards to the hand
-     */
-    private int askForCard(Player p, String rank) {
-    	int catches = 0;
-    	List<Card> hand = p.getHand();
-    	for (int i =0; i < hand.size(); i++) {
-    		if (hand.get(i).getRank() == rank) {
-    			addToHand(hand.get(i));
-    			p.removeFromHand(hand.get(i));
-    			catches++;
-    		}
-    	}
-    	return catches;
-    }
 
-	@Override
-	public void removeFromHand(Card card) {
-		// TODO Auto-generated method stub
-		
-	}
+
     
+ 
 }
