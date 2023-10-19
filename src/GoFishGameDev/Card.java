@@ -6,15 +6,18 @@ public interface Card {
 		 Random randRank = new Random();
     		int randomNumber = randRank.nextInt(deckNums.length);
    		 String rank = deckNums[randomNumber];
-   		 System.out.println(rank);
+   		 return rank;
 	 }
 	 String getSuit(){
 	 String[] deckSuit = "Hearts,Clubs,Spades,Diamonds".split(",");
 		 Random randSuit = new Random();
     		int randomNumber = randSuit.nextInt(deckSuit.length);
    		 String suit = deckSuit[randomNumber];
-   		 System.out.println(suit);
+   		 return suit;
 	 }
-	 String toString();
+	 String toString(){
+	 return "Card{rank + "of " + suit}"
+	 }
+	
 
 }
