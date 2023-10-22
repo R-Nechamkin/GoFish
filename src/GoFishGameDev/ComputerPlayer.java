@@ -8,15 +8,23 @@ public class ComputerPlayer implements Player {
     private List<Card> hand;
     private Set<String> matches;
     
-    // These variables are used to help the computer decide on strategy
-    private HashMap<String, Integer> handMap = new HashMap<>();
+    // These variables are used to help the computer make strategic gameplay decisions
+    private HashMap<String, Integer> handMap;	// a map of the ranks the computer has and how many cards of each rank it has
     private Set<String>  humanAsked;  // stores which cards the human has asked for
     private HashMap<String, Integer> computerAsked;  // stores which cards the computer has already asked for but the human did not have and the last turn the computer asked for them
     private int currTurn;
     
     public ComputerPlayer(String name, List<Card> hand) {
         this.name = name;
+        
         this.hand = hand;
+        
+        handMap = new HashMap<String, Integer>();
+        for (Card c: hand) {
+            if (handMap.containsKey(c.getRank()))
+            	handMap.put(c.getRank(), handMap.get(c.getRank())+ 1);
+            else 
+            	handMap.put(c.getRank(), 1);        }
     }
 
     @Override
@@ -70,9 +78,16 @@ public class ComputerPlayer implements Player {
     	currTurn ++;
     	String rankAsked = computerLogic(human);
     	
-    	if (human.askForCard(human, rankAsked) == 0) {
+    	int catches = human.askForCard(human, rankAsked); 
+    	if (catches == 0) {
     		computerAsked.put(rankAsked, currTurn);
     		addToHand(deck.drawCard());
+    	}
+    	else {
+        	handMap.put(rankAsked, handMap.get(rankAsked)+ catches);
+        	if (handMap.remove(rankAsked, 4)) {
+        		matches.add(rankAsked);
+        	}
     	}
     	
     }
@@ -82,28 +97,23 @@ public class ComputerPlayer implements Player {
      */
     /**
      * The computer uses this method to decide which card to ask for
-     * @param otherPlayer
+     * @param otherPlayer a {@code Player} object representing the other player in the game
      * @return the rank of cards to ask for
      */
     private String computerLogic(Player otherPlayer) {
     	HashMap<String, Integer> cardPriorities = new HashMap<>();
     	for (String rank: handMap.keySet()) {
-    		if (otherPlayer.getMatches().contains(rank)) {
-    			handMap.remove(rank);
-    		}
+    		int priority = 0;
 
-    		else {
-        		int priority = 0;
-        		
-    			if (handMap.get(rank) == 2) priority +=3;
-    			if (handMap.get(rank) == 3) priority ++;
-    			
-    			if (humanAsked.contains(rank)) priority +=2;
-    			
-    			if (computerAsked.containsKey(rank)) {
-    				if ((currTurn - computerAsked.get(rank)) < 4) priority -=2;
-    				else if ((currTurn - computerAsked.get(rank)) < 10) priority --;
-    			}
+    		if (handMap.get(rank) == 2) priority +=3;
+    		if (handMap.get(rank) == 3) priority ++;
+
+    		if (humanAsked.contains(rank)) priority +=2;
+
+    		if (computerAsked.containsKey(rank)) {
+    			if ((currTurn - computerAsked.get(rank)) < 4) priority -=2;
+    			else if ((currTurn - computerAsked.get(rank)) < 10) priority --;
+
     			cardPriorities.put(rank, Integer.valueOf(priority));
     		}
     	}
