@@ -39,7 +39,8 @@ public class GoFishGame implements Game {
 		else {
 			System.out.println("Let's Start!");
 			System.out.println("Player, you go first.");
-			HumanPlayer.play(ComputerPlayer, Deck);
+			playTurn(Player player);
+			
 			
 		}
 		input.close();
@@ -63,12 +64,12 @@ public class GoFishGame implements Game {
     }
     @Override
     public void playTurn(Player player) {
-        // Implement the game logic for playing a turn here
+	    HumanPlayer.play(ComputerPlayer, Deck);
     }
 
     @Override
     public void endGame() {
-        // Implement game-ending actions here
+        
     }
 }
 
