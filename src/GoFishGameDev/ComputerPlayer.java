@@ -6,15 +6,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ComputerPlayer implements Player {
-     String name;
-     List<Card> hand;
-     Set<String> matches;
+     private String name;
+     private List<Card> hand;
+     private Set<String> matches;
     
     // These variables are used to help the computer make strategic gameplay decisions
-     HashMap<String, Integer> handMap;	// a map of the ranks the computer has and how many cards of each rank it has
-     Set<String>  humanAsked = new HashSet<>();  // stores which cards the human has asked for
-     HashMap<String, Integer> computerAsked = new HashMap<>();  // stores which cards the computer has already asked for but the human did not have and the last turn the computer asked for them
-     int currTurn;
+     private HashMap<String, Integer> handMap;	// a map of the ranks the computer has and how many cards of each rank it has
+     private Set<String>  humanAsked = new HashSet<>();  // stores which cards the human has asked for
+     private HashMap<String, Integer> computerAsked = new HashMap<>();  // stores which cards the computer has already asked for but the human did not have and the last turn the computer asked for them
+     private int currTurn;
     
     public ComputerPlayer(String name, List<Card> hand) {
         this.name = name;       

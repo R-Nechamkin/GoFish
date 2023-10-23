@@ -3,8 +3,8 @@ import java.util.*;
 
 public class GoFishGame implements Game {
 	//fields
-     List<Player> players;
-     Deck deck;
+	private List<Player> players;
+	private Deck deck;
 
     public GoFishGame(List<Player> players, Deck deck) {
 	//constructor
