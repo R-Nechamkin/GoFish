@@ -24,6 +24,7 @@ public class Deck {
 	public Card drawCard(){
 		Card currentCard = cards.get(cards.size()-1);
 		cards.remove(currentCard);
+		cardCount --;
 		return currentCard;
 	}
 
