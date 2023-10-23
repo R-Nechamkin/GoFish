@@ -69,7 +69,7 @@ public class GoFishGame implements Game {
     @Override
     public void playTurn(Player player) {
 	    //start players turn
-	    HumanPlayer.play(ComputerPlayer, Deck);
+	    player.play(ComputerPlayer, Deck);
     }
 
     @Override
