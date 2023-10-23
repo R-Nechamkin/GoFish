@@ -1,6 +1,8 @@
 package GoFishGameDev;
 
-public Class Deck {
+import java.util.*;
+
+public class Deck {
 	private List<Card>cards;
 	private int numCards = 0;
 	
