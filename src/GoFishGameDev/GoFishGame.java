@@ -77,10 +77,10 @@ public class GoFishGame implements Game {
 	    //end game, find and display winner
 	    String winner;
         System.out.println("Game over!")
-	if (HumanPlayer.numMatches > ComputerPlayer.numMatches){
+	if (HumanPlayer.numMatches() > ComputerPlayer.numMatches()){
 		winner = "Human Player";
     }
-	    else if (ComputerPlayer.numMatches > HumanPlayer.numMatches) {
+	    else if (ComputerPlayer.numMatches() > HumanPlayer.numMatches()) {
 		    winner = "Computer";
 	    }
 	    else {
