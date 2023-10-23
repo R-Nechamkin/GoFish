@@ -9,14 +9,10 @@ public class ClientCode {
 			System.out.println("What is your name?");
 			String humanName = keyboard.nextLine();
 			List<Player> players = new ArrayList<>();
-			players.add(new HumanPlayer(humanName, null));
-			players.add(new ComputerPlayer("The computer", null));
+			players.add(new HumanPlayer(humanName, new ArrayList<Card>()));
+			players.add(new ComputerPlayer("The computer", new ArrayList<Card>()));
 			Deck deck = new Deck();
-			for (Player p: players) {
-				for (int i =0; i < 7; i++) {
-					p.addToHand(deck.drawCard());
-				}
-			}
+
 			Game game = new GoFishGame(players, deck);
 			game.startGame();
 			

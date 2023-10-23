@@ -137,7 +137,7 @@ public class HumanPlayer implements Player {
 
 		System.out.println("What card would you like to ask for? Please enter the number of your card. ");
 		String rank = keyboard.nextLine().toUpperCase();
-		while (!(values.contains(rank)) || !(containsRank(hand, rank)) || matches.contains(rank)){
+		/*while (!(values.contains(rank)) || !(containsRank(hand, rank)) || matches.contains(rank)){
 			if (!(values.contains(rank))) {
 				System.out.print(
 					"Error! You have entered an invalid response. Please type the rank of your card. "
@@ -154,7 +154,7 @@ public class HumanPlayer implements Player {
 								+ "\nFor face cards, type the full name of the rank.");
 			}
 			rank = keyboard.nextLine().toUpperCase();
-		}
+		}*/
 
 		return rank;
 	}
