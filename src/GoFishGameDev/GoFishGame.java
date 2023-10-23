@@ -41,10 +41,6 @@ public class GoFishGame implements Game {
 		}
 		else {
 			System.out.println("Let's Start!");
-			Player human = new HumanPlayer("You", hand);
-			Player computer = new ComputerPlayer("The computer", hand);
-			players.add(human);
-			players.add(computer);
 			System.out.println("Player, you go first.");
 			
 			playTurn(Player player);
