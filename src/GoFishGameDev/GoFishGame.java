@@ -15,7 +15,7 @@ public class GoFishGame implements Game {
     @Override
     public void startGame() {
         // begin game, show instructs, player starts
-	    Deck.shuffleDeck();
+	    deck.shuffleDeck();
         		System.out.println("Welcome to GoFish!");
 		Scanner input = new Scanner(System.in);
 		System.out.println("Menu: \r\n"
@@ -42,8 +42,7 @@ public class GoFishGame implements Game {
 		else {
 			System.out.println("Let's Start!");
 			System.out.println("Player, you go first.");
-			
-			playTurn(Player player);
+			playTurn();
 			
 		}
 		input.close();
@@ -72,26 +71,29 @@ public class GoFishGame implements Game {
 	    while(!isGameOver()) {
 	    	players.get(0).play(players.get(1), deck);
 	    	System.out.println("Human, go.");
-	    	players.get(1).play(players.get(0), deck);
-	    	System.out.println("The computer is going.");
+	    	if (!isGameOver()) {
+		    	players.get(1).play(players.get(0), deck);
+		    	System.out.println("The computer is going.");
+	    	}
 	    }
     }
 
     @Override
     public void endGame() {
-	    //end game, find and display winner
-	    String winner;
-        System.out.println("Game over!")
-	if (players.get(0).getNumMatches() > players.get(1).getNumMatches() ){
-		winner = "Human Player";
+    	//end game, find and display winner
+    	String winner;
+    	System.out.println("Game over!");
+    	if (players.get(0).getNumMatches() > players.get(1).getNumMatches() ){
+    		winner = "Human Player";
+    	}
+    	else if (players.get(0).getNumMatches() > players.get(1).getNumMatches()) {
+    		winner = "Computer";
+    	}
+    	else {
+    		winner = "Tie";
+    	}
+    	System.out.println("Winner: " + winner + "!!");
     }
-	    else if (players.get(0).getNumMatches() > players.get(1).getNumMatches()) {
-		    winner = "Computer";
-	    }
-	    else {
-		    winner = "Tie";
-	    }
-	    System.out.println("Winner: " + winner + "!!");
 }
 
 
