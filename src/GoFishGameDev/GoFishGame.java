@@ -2,17 +2,19 @@ package GoFishGameDev;
 import java.util.List;
 
 public class GoFishGame implements Game {
+	//fields
     private List<Player> players;
     private Deck deck;
 
     public GoFishGame(List<Player> players, Deck deck) {
+	//constructor
         this.players = players;
         this.deck = deck;
     }
 
     @Override
     public void startGame() {
-        // Implement the game initialization here
+        // begin game, show instructs, player starts
         		System.out.println("Welcome to GoFish!");
 		Scanner input = new Scanner(System.in);
 		System.out.println("Menu: \r\n"
@@ -49,7 +51,7 @@ public class GoFishGame implements Game {
 
     @Override
     public boolean isGameOver() {
-              // Implement the game-over condition here
+              // if no cards left-gameover
     	boolean gameOver = false;
     	//when all the cards are used
     	if (deck.cardCount == 0) {
@@ -62,12 +64,11 @@ public class GoFishGame implements Game {
 		if (p.getHand().isEmpty())
 			gameOver = true;
 	}
-        return gameOver; // Replace with your condition
-        
-        //if computer has no cards left
+        return gameOver;
     }
     @Override
     public void playTurn(Player player) {
+	    //start players turn
 	    HumanPlayer.play(ComputerPlayer, Deck);
     }
 
