@@ -49,18 +49,18 @@ public class GoFishGame implements Game {
 
     @Override
     public boolean isGameOver() {
-        // Implement the game-over condition here
-    	boolean fullDeck = false;
+              // Implement the game-over condition here
     	boolean gameOver = false;
-    	for(int i = 0; i < type.length; i++){
-    	    if(type[i] == null){
-    	        fullDeck = true;
-    	        gameOver = true;
-    	    }
+    	//when all the cards are used
+    	if (deck.cardCount == 0) {
+    		gameOver = true;
+    	}
     	  
     	}
-    	//if any players have no cards left-gameover
+    	//if players have no cards left-gameover
         return gameOver; // Replace with your condition
+        
+        //if computer has no cards left
     }
     @Override
     public void playTurn(Player player) {
