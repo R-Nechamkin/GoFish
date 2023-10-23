@@ -22,7 +22,7 @@ public class Deck {
 	}
 	
 	public Card drawCard(ArrayList cards){
-		Card currentCard = new Card(cards.get(cards.size()-1));
+		Card currentCard = (Card) cards.get(cards.size()-1);
 		return currentCard;
 	}
 
