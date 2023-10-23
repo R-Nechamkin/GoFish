@@ -20,7 +20,12 @@ public class Deck {
 			}
 		}
 	}
+	
+	public Card drawCard(ArrayList cards){
+		cards[i];	
+	}
 
+	
 	public void shuffleDeck(){
 		Collections.shuffle(cards);
 	}
