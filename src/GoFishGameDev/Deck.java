@@ -5,7 +5,6 @@ import java.util.Collections;
 
 public class Deck {
 	private List<Card>cards;
-	private int cardCount = 0;
 	
 	String[] deckSuit = "Hearts,Clubs,Spades,Diamonds".split(",");
 	String[] deckRank = "A,2,3,4,5,6,7,8,9,10,J,Q,K".split(",");
@@ -16,7 +15,6 @@ public class Deck {
 			for (String rank : deckRank) {
 				Card card = new Card(suit, rank);
 				cards.add(card);
-				cardCount ++;
 			}
 		}
 	}
@@ -24,7 +22,6 @@ public class Deck {
 	public Card drawCard(){
 		Card currentCard = cards.get(cards.size()-1);
 		cards.remove(currentCard);
-		cardCount --;
 		return currentCard;
 	}
 
@@ -34,7 +31,7 @@ public class Deck {
 	}
 	
 	public int cardCount(){
-		return cardCount;
+		return cards.size();
 	}
 	
 
