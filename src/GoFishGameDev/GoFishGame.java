@@ -39,7 +39,7 @@ public class GoFishGame implements Game {
 		else {
 			System.out.println("Let's Start!");
 			System.out.println("Player, you go first.");
-			HumanPlayer.play();
+			HumanPlayer.play(ComputerPlayer, Deck);
 			
 		}
 		input.close();
