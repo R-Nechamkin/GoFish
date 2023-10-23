@@ -67,9 +67,14 @@ public class GoFishGame implements Game {
     }
     
     @Override
-    public void playTurn(Player player) {
+    public void playTurn() {
 	    //start players turn
-	    player.play(ComputerPlayer, Deck);
+	    while(!isGameOver()) {
+	    	players.get(0).play(players.get(1), deck);
+	    	System.out.println("Human, go.");
+	    	players.get(1).play(players.get(0), deck);
+	    	System.out.println("The computer is going.");
+	    }
     }
 
     @Override
