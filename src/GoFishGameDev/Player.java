@@ -12,6 +12,7 @@ public interface Player {
     void addToHand(Card card);
 	int askForCard(Player asker, String rank);
     void play(Player other, Deck deck);
+    int getNumMatches();
 
 
 }
