@@ -69,7 +69,7 @@ public class GoFishGame implements Game {
 
     @Override
     public void endGame() {
-        
+        System.out.println("Game over!")
     }
 }
 
