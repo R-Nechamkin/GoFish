@@ -15,7 +15,7 @@ public class GoFishGame implements Game {
     @Override
     public void startGame() {
         // begin game, show instructs, player starts
-	    Deck.shuffleDeck();
+	    deck.shuffleDeck();
         		System.out.println("Welcome to GoFish!");
 		Scanner input = new Scanner(System.in);
 		System.out.println("Menu: \r\n"
