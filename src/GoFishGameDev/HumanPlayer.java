@@ -1,5 +1,6 @@
 package GoFishGameDev;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -7,7 +8,7 @@ import java.util.Set;
 public class HumanPlayer implements Player {
 	 String name;
 	 List<Card> hand;
-	 Set<String> matches;
+	 Set<String> matches = new HashSet<>();
 
 	public HumanPlayer(String name, List<Card> hand) {
 		this.name = name;
@@ -131,31 +132,20 @@ public class HumanPlayer implements Player {
 		values.add("8");
 		values.add("9");
 		values.add("10");
-		values.add("JACK");
-		values.add("QUEEN");
-		values.add("KING");
-		values.add("ACE");
+		values.add("J");
+		values.add("Q");
+		values.add("K");
+		values.add("A");
 
 		System.out.println("What card would you like to ask for? Please enter the number of your card. ");
-		String rank = keyboard.nextLine().toUpperCase();
-		/*while (!(values.contains(rank)) || !(containsRank(hand, rank)) || matches.contains(rank)){
-			if (!(values.contains(rank))) {
-				System.out.print(
+		String rank = keyboard.nextLine();
+		while (!(values.contains(rank))){
+			System.out.print(
 					"Error! You have entered an invalid response. Please type the rank of your card. "
 							+ "\nFor face cards, type the full name of the rank.");
-			}
-			else if (!(containsRank(hand, rank))){
-				System.out.print(
-						"Error! You may only ask for a card which you have in your hand. Please type the rank of your card. "
-								+ "\nFor face cards, type the full name of the rank.");
-			}
-			else {
-				System.out.print(
-						"Error! You already have 4 of these cards. Please type the rank of your card. "
-								+ "\nFor face cards, type the full name of the rank.");
-			}
+						
 			rank = keyboard.nextLine().toUpperCase();
-		}*/
+		}
 
 		return rank;
 	}
