@@ -73,8 +73,19 @@ public class GoFishGame implements Game {
 
     @Override
     public void endGame() {
+	    //end game, find and display winner
+	    String winner;
         System.out.println("Game over!")
+	if (HumanPlayer.getMatches > ComputerPlayer.getMatches){
+		winner = "Human Player";
     }
+	    else if (ComputerPlayer.getMatches > HumanPlayer.getMatches) {
+		    winner = "Computer";
+	    }
+	    else {
+		    winner = "Tie"
+	    }
+	    System.out.println("Winner: " + winner + "!!")
 }
 
 
