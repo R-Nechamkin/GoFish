@@ -1,30 +1,28 @@
 package GoFishGameDev;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class ComputerPlayer implements Player {
-    private String name;
-    private List<Card> hand;
-    private Set<String> matches;
+     String name;
+     List<Card> hand;
+     Set<String> matches;
     
     // These variables are used to help the computer make strategic gameplay decisions
-    private HashMap<String, Integer> handMap;	// a map of the ranks the computer has and how many cards of each rank it has
-    private Set<String>  humanAsked;  // stores which cards the human has asked for
-    private HashMap<String, Integer> computerAsked;  // stores which cards the computer has already asked for but the human did not have and the last turn the computer asked for them
-    private int currTurn;
+     HashMap<String, Integer> handMap;	// a map of the ranks the computer has and how many cards of each rank it has
+     Set<String>  humanAsked = new HashSet<>();  // stores which cards the human has asked for
+     HashMap<String, Integer> computerAsked = new HashMap<>();  // stores which cards the computer has already asked for but the human did not have and the last turn the computer asked for them
+     int currTurn;
     
     public ComputerPlayer(String name, List<Card> hand) {
-        this.name = name;
-        
+        this.name = name;       
         this.hand = hand;
-        
         handMap = new HashMap<String, Integer>();
         for (Card c: hand) {
-            if (handMap.containsKey(c.getRank()))
-            	handMap.put(c.getRank(), handMap.get(c.getRank())+ 1);
-            else 
-            	handMap.put(c.getRank(), 1);        }
+        	addToHand(c);        
+        }
     }
 
     @Override
@@ -44,10 +42,9 @@ public class ComputerPlayer implements Player {
     @Override
     public void addToHand(Card card) {
         hand.add(card);
-        if (handMap.containsKey(card.getRank()))
-        	handMap.put(card.getRank(), handMap.get(card.getRank())+ 1);
-        else 
-        	handMap.put(card.getRank(), 1);
+        int frequency = handMap.getOrDefault(card, 1);
+        frequency ++;
+        handMap.put(card.getRank(), frequency);
     }
     
 	@Override
@@ -82,7 +79,7 @@ public class ComputerPlayer implements Player {
     	currTurn ++;
     	String rankAsked = computerLogic(human);
     	
-    	int catches = human.askForCard(human, rankAsked); 
+    	int catches = human.askForCard(this, rankAsked); 
     	if (catches == 0) {
     		computerAsked.put(rankAsked, currTurn);
     		addToHand(deck.drawCard());
@@ -107,7 +104,7 @@ public class ComputerPlayer implements Player {
     private String computerLogic(Player otherPlayer) {
     	HashMap<String, Integer> cardPriorities = new HashMap<>();
     	for (String rank: handMap.keySet()) {
-    		int priority = 0;
+    		int priority = 1;
 
     		if (handMap.get(rank) == 2) priority +=3;
     		if (handMap.get(rank) == 3) priority ++;
@@ -117,9 +114,8 @@ public class ComputerPlayer implements Player {
     		if (computerAsked.containsKey(rank)) {
     			if ((currTurn - computerAsked.get(rank)) < 4) priority -=2;
     			else if ((currTurn - computerAsked.get(rank)) < 10) priority --;
-
-    			cardPriorities.put(rank, Integer.valueOf(priority));
     		}
+			cardPriorities.put(rank, Integer.valueOf(priority));
     	}
     	return max(cardPriorities);
 
@@ -132,9 +128,12 @@ public class ComputerPlayer implements Player {
      * @return
      */
     public String max(HashMap<String,Integer> map) {
-    	String maxKey = null;
+    	// We need to create a List of the keys so that we make sure maxKey is some key
+    	// If we just set maxKey to null, we'll run into a problem if no key has maxPriority
+    	List<String> keyArray = new ArrayList<>(map.keySet());
+    	String maxKey = keyArray.get(0);
     	int maxValue = Integer.MIN_VALUE;
-    	for (String s: map.keySet()) {
+    	for (String s: keyArray) {
     		if (map.get(s) > maxValue) {
     			maxValue = map.get(s);
     			maxKey = s;

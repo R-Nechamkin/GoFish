@@ -3,8 +3,8 @@ import java.util.*;
 
 public class GoFishGame implements Game {
 	//fields
-    private List<Player> players;
-    private Deck deck;
+     List<Player> players;
+     Deck deck;
 
     public GoFishGame(List<Player> players, Deck deck) {
 	//constructor
@@ -71,11 +71,11 @@ public class GoFishGame implements Game {
     public void playTurn() {
 	    //start players turn
 	    while(!isGameOver()) {
-	    	players.get(0).play(players.get(1), deck);
 	    	System.out.println("Human, go.");
+	    	players.get(0).play(players.get(1), deck);
 	    	if (!isGameOver()) {
-		    	players.get(1).play(players.get(0), deck);
 		    	System.out.println("The computer is going.");
+		    	players.get(1).play(players.get(0), deck);
 	    	}
 	    }
 	    endGame();

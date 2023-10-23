@@ -5,9 +5,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class HumanPlayer implements Player {
-	private String name;
-	private List<Card> hand;
-	private Set<String> matches;
+	 String name;
+	 List<Card> hand;
+	 Set<String> matches;
 
 	public HumanPlayer(String name, List<Card> hand) {
 		this.name = name;
@@ -80,6 +80,7 @@ public class HumanPlayer implements Player {
 			System.out.println("The computer does not have any of your cards. Go Fish!");
 			Card drawn = deck.drawCard();
 			System.out.println("You drew a " + drawn.getRank() + " of " + drawn.getSuit() + ".");
+			addToHand(drawn);
 		}
 		else {
 			System.out.println("You got " + catches + " of your card from the computer");
