@@ -58,6 +58,10 @@ public class GoFishGame implements Game {
     	  
     	}
     	//if players have no cards left-gameover
+		for (Player p: players){
+		if (p.getHand().isEmpty())
+			gameOver = true;
+	}
         return gameOver; // Replace with your condition
         
         //if computer has no cards left
