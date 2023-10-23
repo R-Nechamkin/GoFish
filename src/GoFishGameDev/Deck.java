@@ -22,7 +22,8 @@ public class Deck {
 	}
 	
 	public Card drawCard(){
-		Card currentCard = (Card) cards.get(cards.size()-1);
+		Card currentCard = cards.get(cards.size()-1);
+		cards.remove(currentCard);
 		return currentCard;
 	}
 
