@@ -28,6 +28,10 @@ public class HumanPlayer implements Player {
 	public Set<String> getMatches() {
 		return matches;
 	}
+	
+    public int getNumMatches() {
+    	return matches.size();
+    }
 
 
 	@Override

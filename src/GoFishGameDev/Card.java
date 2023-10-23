@@ -1,5 +1,5 @@
 package GoFishGameDev;
-public Class Card {
+public class Card {
 	private String rank;
 	private String suit;
 	
@@ -8,16 +8,16 @@ public Class Card {
 		this.suit = suit;
 	}
 	
-	String getRank() {
+	public String getRank() {
 		return this.rank;
 	}
 
-	String getSuit() {
+	public String getSuit() {
 
-		return this.suit
+		return this.suit;
 	}
 
-	String toString() {
+	public String toString() {
 		return this.rank + " of " + this.suit;
 	}
 	

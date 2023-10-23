@@ -36,6 +36,10 @@ public class ComputerPlayer implements Player {
     public List<Card> getHand() {
         return hand;
     }
+    
+    public int getNumMatches() {
+    	return matches.size();
+    }
 
     @Override
     public void addToHand(Card card) {
