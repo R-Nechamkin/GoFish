@@ -1,5 +1,5 @@
 package GoFishGameDev;
-import java.util.List;
+import java.util.*;
 
 public class GoFishGame implements Game {
 	//fields
@@ -40,13 +40,16 @@ public class GoFishGame implements Game {
 		}
 		else {
 			System.out.println("Let's Start!");
+			Player human = new HumanPlayer("You", hand);
+			Player computer = new ComputerPlayer("The computer", hand);
+			players.add(human);
+			players.add(computer);
 			System.out.println("Player, you go first.");
-			playTurn(Player player);
 			
+			playTurn(Player player);
 			
 		}
 		input.close();
-    }
     }
 
     @Override
@@ -54,18 +57,18 @@ public class GoFishGame implements Game {
               // if no cards left-gameover
     	boolean gameOver = false;
     	//when all the cards are used
-    	if (deck.cardCount == 0) {
+    	if (deck.cardCount() == 0) {
     		gameOver = true;
     	}
     	  
-    	}
     	//if players have no cards left-gameover
 		for (Player p: players){
 		if (p.getHand().isEmpty())
 			gameOver = true;
-	}
+		}
         return gameOver;
     }
+    
     @Override
     public void playTurn(Player player) {
 	    //start players turn
@@ -77,16 +80,16 @@ public class GoFishGame implements Game {
 	    //end game, find and display winner
 	    String winner;
         System.out.println("Game over!")
-	if (HumanPlayer.numMatches() > ComputerPlayer.numMatches()){
+	if (players.get(0).getNumMatches() > players.get(1).getNumMatches() ){
 		winner = "Human Player";
     }
-	    else if (ComputerPlayer.numMatches() > HumanPlayer.numMatches()) {
+	    else if (players.get(0).getNumMatches() > players.get(1).getNumMatches()) {
 		    winner = "Computer";
 	    }
 	    else {
-		    winner = "Tie"
+		    winner = "Tie";
 	    }
-	    System.out.println("Winner: " + winner + "!!")
+	    System.out.println("Winner: " + winner + "!!");
 }
 
 
