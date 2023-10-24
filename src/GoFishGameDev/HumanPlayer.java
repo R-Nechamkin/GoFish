@@ -139,11 +139,22 @@ public class HumanPlayer implements Player {
 
 		System.out.println("What card would you like to ask for? Please enter the number of your card. ");
 		String rank = keyboard.nextLine();
-		while (!(values.contains(rank))){
-			System.out.print(
-					"Error! You have entered an invalid response. Please type the rank of your card. "
+				while (!(values.contains(rank)) || !(containsRank(hand, rank)) || matches.contains(rank)){
+			if (!(values.contains(rank))) {
+				System.out.print(
+					"Error! No card exists with that name. Please type the rank of your card. "
 							+ "\nFor face cards, type the full name of the rank.");
-						
+			}
+			else if (!(containsRank(hand, rank))){
+				System.out.print(
+						"Error! You may only ask for a card which you have in your hand. Please type the rank of your card. "
+								+ "\nFor face cards, type the full name of the rank.");
+			}
+			else {
+				System.out.print(
+						"Error! You already have 4 of these cards. Please type the rank of your card. "
+								+ "\nFor face cards, type the full name of the rank.");
+			}
 			rank = keyboard.nextLine().toUpperCase();
 		}
 
@@ -158,7 +169,7 @@ public class HumanPlayer implements Player {
 	 */
 	private boolean containsRank(List<Card> cards, String rank) {
 		for (Card c: cards) {
-			if (c.getRank() == rank)
+			if (c.getRank().equals(rank))
 				return true;
 		}
 		return false;
