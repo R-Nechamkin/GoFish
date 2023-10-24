@@ -64,7 +64,7 @@ public class HumanPlayer implements Player {
 
 
 	@Override
-	public void play(Player computer, StandardDeck deck) {
+	public void play(Player computer, Deck deck) {
 		Scanner keyboard = new Scanner(System.in);
 
 		System.out.println("It is your turn.");

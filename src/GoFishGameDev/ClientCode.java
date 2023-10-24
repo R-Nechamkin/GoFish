@@ -11,7 +11,8 @@ public class ClientCode {
 			List<Player> players = new ArrayList<>();
 			players.add(new HumanPlayer(humanName, new ArrayList<Card>()));
 			players.add(new ComputerPlayer("The computer", new ArrayList<Card>()));
-			StandardDeck deck = new StandardDeck();
+
+			Deck deck = new StandardDeck();
 
 			Game game = new GoFishGame(players, deck);
 			game.startGame();

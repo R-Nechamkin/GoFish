@@ -3,7 +3,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class StandardDeck implements Deck{
+
+public class StandardDeck implements Deck {
 	//field
 	private List<Card>cards;
 	//set array of suits and ranks

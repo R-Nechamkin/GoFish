@@ -75,7 +75,7 @@ public class ComputerPlayer implements Player {
 	}
 
     @Override
-    public void play(Player human, StandardDeck deck) {
+    public void play(Player human, Deck deck) {
     	currTurn ++;
     	String rankAsked = computerLogic(human);
     	
