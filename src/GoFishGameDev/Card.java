@@ -1,5 +1,5 @@
 package GoFishGameDev;
-public class Card {
+public class Card implements CardInterface{
 //fields
 	private String rank;
 	private String suit;
@@ -9,15 +9,18 @@ public class Card {
 		this.suit = suit;
 	}
 //getRank
+	@Override
 	public String getRank() {
 		return this.rank;
 	}
 //getSuit
+	@Override
 	public String getSuit() {
 
 		return this.suit;
 	}
 //toString
+	@Override
 	public String toString() {
 		return this.rank + " of " + this.suit;
 	}

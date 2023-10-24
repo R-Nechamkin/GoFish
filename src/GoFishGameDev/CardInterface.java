@@ -1,6 +1,6 @@
 package GoFishGameDev;
 
-public interface cardInterface {
+public interface CardInterface {
   //interface for card class
 	String getRank();
 	String getSuit();
