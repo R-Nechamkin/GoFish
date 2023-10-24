@@ -64,7 +64,7 @@ public class HumanPlayer implements Player {
 
 
 	@Override
-	public void play(Player computer, Deck deck) {
+	public void play(Player computer, StandardDeck deck) {
 		Scanner keyboard = new Scanner(System.in);
 
 		System.out.println("It is your turn.");
@@ -143,17 +143,17 @@ public class HumanPlayer implements Player {
 			if (!(values.contains(rank))) {
 				System.out.print(
 					"Error! No card exists with that name. Please type the rank of your card. "
-							+ "\nFor face cards, type the full name of the rank.");
+							+ "\nFor face cards, type the uppercase first letter of the rank.");
 			}
 			else if (!(containsRank(hand, rank))){
 				System.out.print(
 						"Error! You may only ask for a card which you have in your hand. Please type the rank of your card. "
-								+ "\nFor face cards, type the full name of the rank.");
+								+ "\nFor face cards, type the uppercase first letter of the rank.");
 			}
 			else {
 				System.out.print(
 						"Error! You already have 4 of these cards. Please type the rank of your card. "
-								+ "\nFor face cards, type the full name of the rank.");
+								+ "\nFor face cards, type the uppercase first letter of the rank.");
 			}
 			rank = keyboard.nextLine().toUpperCase();
 		}

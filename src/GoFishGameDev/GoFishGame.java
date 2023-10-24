@@ -4,9 +4,9 @@ import java.util.*;
 public class GoFishGame implements Game {
 	//fields
 	private List<Player> players;
-	private Deck deck;
+	private StandardDeck deck;
 
-    public GoFishGame(List<Player> players, Deck deck) {
+    public GoFishGame(List<Player> players, StandardDeck deck) {
 	//constructor
         this.players = players;
         this.deck = deck;
