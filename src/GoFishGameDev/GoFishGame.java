@@ -18,16 +18,17 @@ public class GoFishGame implements Game {
 	    deck.shuffleDeck();
         		System.out.println("Welcome to GoFish!");
 		Scanner input = new Scanner(System.in);
-		int menuOption = 0;
-		while (menuOption != 2) {
+		String menuOption = "";
+		
+		do {
 			System.out.println("Menu: \r\n" + "1) Instructions \r\n" + "2) Start Game");
-			menuOption = input.nextInt();
-			while (menuOption != 1 && menuOption != 2) {
+			menuOption = input.nextLine();
+			while (!(menuOption.equals("1")) && !(menuOption.equals("2"))) {
 				System.out.println("Invalid Entry. Please input 1 or 2.");
 				System.out.println("Menu: \r\n" + "1) Instructions \r\n" + "2) Start Game");
-				menuOption = input.nextInt();
+				menuOption = input.nextLine();
 			}
-			if (menuOption == 1) {
+			if (menuOption.equals("1")) {
 				System.out.println("During a turn, you can ask for a specific rank of a card. \r\n"
 						+ "If the other player has it, they must give you all of them. \r\n"
 						+ "If not, then you have to go fish, or pick a card from the deck.\r\n"
@@ -41,14 +42,22 @@ public class GoFishGame implements Game {
 						p.addToHand(deck.drawCard());
 					}
 				}
+			}
+		}
+		while (menuOption.equals("1"));
 				System.out.println("Let's Start!");
 				System.out.println("Player, you go first.");
+			
+				
 				playTurn();
+				
+				input.close();
 
-			} 
-		}
-		input.close();
-    }
+			
+		
+		
+		
+}
 
     @Override
     public boolean isGameOver() {
