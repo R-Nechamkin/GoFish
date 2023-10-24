@@ -58,7 +58,7 @@ public class ComputerPlayer implements Player {
 		humanAsked.add(rank);
     	int catches = 0;
     	for (int i =0; i < hand.size(); i++) {
-    		if (hand.get(i).getRank() == rank) {
+    		if (hand.get(i).getRank().equals(rank)) {
     			Card card = hand.get(i);
     			asker.addToHand(card);
     			hand.remove(card);

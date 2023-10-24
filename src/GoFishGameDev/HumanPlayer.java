@@ -49,7 +49,7 @@ public class HumanPlayer implements Player {
 		int catches = 0;
 		System.out.println(asker.getName() + " has asked you for " + rank);
 		for (int i =0; i < hand.size(); i++) {
-			if (hand.get(i).getRank() == rank) {
+			if (hand.get(i).getRank().equals(rank)) {
 				asker.addToHand(hand.get(i));
 				hand.remove(hand.get(i));
 				catches++;
@@ -184,8 +184,7 @@ public class HumanPlayer implements Player {
 	private int countCards(List<Card> cards,String rank) {
 		int count = 0;
 		for (Card c: cards) {
-			if (c.getRank() == rank)
-				count++;
+			if (c.getRank().equals(rank)) count++;
 		}
 		return count;
 	}
